@@ -6,7 +6,7 @@ import { Send, LogOut } from 'lucide-react';
 import { io } from "socket.io-client";
 import toast from 'react-hot-toast';
 
-const socket = io("https://buzzback.onrender.com", { transports: ["websocket"] });
+const socket = io("https://buzzback..com", { transports: ["websocket"] });
 
 const Message = () => {
   const [message, setMessage] = useState("");
@@ -55,7 +55,7 @@ const Message = () => {
         }
 
         const res = await axios.get(
-          "https://buzzback.onrender.com/api/messages?filters[from][$eq]=${username}",
+          `https://buzzback.onrender.com/api/messages?filters[from][$eq]=${username}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
