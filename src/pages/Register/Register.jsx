@@ -16,7 +16,7 @@ const Register = () => {
       const token = Cookies.get("token");
       if (token) {
         try {
-          const res = await axios.get("http://localhost:1337/api/users/me", {
+          const res = await axios.get(`${process.env.API_URL}/api/users/me`, {
             headers: { Authorization: token },
           });
           console.log("User already logged in:", res.data);
@@ -39,7 +39,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:1337/api/auth/local/register",
+        `${process.env.API_URL}/api/auth/local/register`,
         {
           username,
           password,
@@ -49,7 +49,7 @@ const Register = () => {
       toast.success("Registration successful!");
 
       const res_login = await axios.post(
-        "http://localhost:1337/api/auth/local",
+        `${process.env.API_URL}/api/auth/local`,
         {
           identifier: username,
           password,

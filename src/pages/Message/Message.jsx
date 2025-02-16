@@ -6,7 +6,7 @@ import { Send, LogOut } from 'lucide-react';
 import { io } from "socket.io-client";
 import toast from 'react-hot-toast';
 
-const socket = io("http://localhost:1337", { transports: ["websocket"] });
+const socket = io(`${process.env.API_URL}`, { transports: ["websocket"] });
 
 const Message = () => {
   const [message, setMessage] = useState("");
@@ -55,7 +55,7 @@ const Message = () => {
         }
 
         const res = await axios.get(
-          `http://localhost:1337/api/messages?filters[from][$eq]=${username}`,
+          `${process.env.API_URL}/api/messages?filters[from][$eq]=${username}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -81,7 +81,7 @@ const Message = () => {
       try {
         const token = Cookies.get("token");
         await axios.post(
-          "http://localhost:1337/api/messages",
+          `${process.env.API_URL}/api/messages`,
           { data: serverMessage },
           { headers: { Authorization: `${token}` } }
         );
@@ -150,7 +150,7 @@ const Message = () => {
       };
 
       await axios.post(
-        "http://localhost:1337/api/messages",
+        `${process.env.API_URL}/api/messages`,
         { data: newMessage },
         { headers: { Authorization: `${token}` } }
       );

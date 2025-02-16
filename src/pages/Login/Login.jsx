@@ -14,7 +14,7 @@ const Login = () => {
     const token = Cookies.get("token");
     if (token) {
       axios
-        .get("http://localhost:1337/api/users/me", {
+        .get(`${process.env.API_URL}/api/users/me`, {
           headers: { Authorization: `${token}` },
         })
         .then((res) => {
@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:1337/api/auth/local", {
+      const res = await axios.post(`${process.env.API_URL}/api/auth/local`, {
         identifier: username,
         password: password,
       });
